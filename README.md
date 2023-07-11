@@ -1,7 +1,7 @@
 # Employee_register
 
 1 Create user account
-![Screenshot](screenshots/sign_up.png)
+![Screenshot](screenshots/Sign_up.png)
 
 
 2 Enter your company name
@@ -16,13 +16,15 @@
 ![Screenshot](screenshots/delete_employee.png)
 
 5 Update account
-![Screenshot](screenshots/update_account.png)
+![Screenshot](screenshots/account_update.png)
 
 6 Change account password
 ![Screenshot](screenshots/change_password.png)
 
-7 Reset account password by email
-\n First You need to configurate email settings:
+7 Reset account password by email,
+First You need to configurate email settings:
+![Screenshot](screenshots/email.png)
+
 ![Screenshot](screenshots/reset_password.png)
 
 
