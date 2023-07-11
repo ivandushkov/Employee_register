@@ -16,13 +16,13 @@
 
 
 5 Update account
-![image](https://github.com/ivandushkov/Employee_register/assets/139251997/74b96acf-ec98-48ef-ba26-9b3fc876b2ad)
+![image](https://github.com/ivandushkov/Employee_register/assets/139251997/2bd5f71d-c0dc-4c88-8d89-413ecd4b0eb0)
 
 6 Change account password
 ![image](https://github.com/ivandushkov/Employee_register/assets/139251997/9046bb91-98a7-4c71-8e32-90c39a6b525c)
 
 7 Reset account password by email
-First You need to configurate email settings:
+\n First You need to configurate email settings:
 ![image](https://github.com/ivandushkov/Employee_register/assets/139251997/cd3b5a91-90f2-4db0-8032-6ebd3f99fbf0)
 
 ![image](https://github.com/ivandushkov/Employee_register/assets/139251997/834d966f-cd9e-4daf-9e14-c5953583e621)
