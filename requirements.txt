@@ -1,0 +1,4 @@
+djangorestframework
+markdown
+django-filter
+Pillow>=8.3.2
