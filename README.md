@@ -16,7 +16,7 @@
 
 
 5 Update account
-![image](https://github.com/ivandushkov/Employee_register/assets/139251997/de2615e7-50f8-4a32-bdf0-35c7bbdfb313)
+![image](https://github.com/ivandushkov/Employee_register/assets/139251997/9e985ee1-5ad7-43d5-9e55-f671bcc56f7c)
 
 6 Change account password
 ![image](https://github.com/ivandushkov/Employee_register/assets/139251997/9046bb91-98a7-4c71-8e32-90c39a6b525c)
@@ -28,5 +28,6 @@
 ![image](https://github.com/ivandushkov/Employee_register/assets/139251997/834d966f-cd9e-4daf-9e14-c5953583e621)
 
 8 Delete account 
-![image](https://github.com/ivandushkov/Employee_register/assets/139251997/b2e01217-46af-47ec-b15d-7651ac486e23)
+![image](https://github.com/ivandushkov/Employee_register/assets/139251997/82d8d1f5-62d5-4ed4-8a04-2fe5746a23df)
+
 
