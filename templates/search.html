@@ -46,53 +46,50 @@
 
 <h4>Search results:</h4>
 <ul>
-  <div class="row">
-    {% for employee in employees %}
-    <div class="col-md-4">
-      <div class="card mb-4">
-        <img style="object-fit: cover; height: 250px;" class="card-img-top w-100" src="{{ employee.image.url }}" alt="Card image cap">
-        <div class="card-body">
-          <h5 style="text-align: center;" class="card-title">{{ employee.firstname }} {{ employee.surname }} {{ employee.lastname }}</h5>
-          <h6>Company name: {{ employee.company_name }}</h6>
-          <h6>Address: {{ employee.address }}</h6>
-          <h7>Phone: {{ employee.phone }}</h7>
-          <br>
-          <textarea class="card-text w-100 h-50" rows="3">{{ employee.skills }}</textarea>
-          <form method="post">
-            <a href="{% url 'edit' employee.id %}" class="btn btn-danger w-25">Edit</a>
-            <button type="button" class="btn btn-primary w-25" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Profile</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    Are you sure you want to delete {{ employee.firstname }} {{ employee.surname }} {{ employee.lastname }} from {{ employee.company_name }}?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="{% url 'delete_employee' employee.id %}" type="submit" class="btn btn-primary">Delete</a>
-                  </div>
+<div class="row">
+  {% for employee in employees %}
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <img style="object-fit: cover; height: 250px;" class="card-img-top w-100" src="{{ employee.image.url }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 style="text-align: center;" class="card-title">{{ employee.firstname }} {{ employee.surname }} {{ employee.lastname }}</h5>
+        <h6>Company name: {{ employee.company_name }}</h6>
+        <h6>Address: {{ employee.address }}</h6>
+        <h7>Phone: {{ employee.phone }}</h7>
+        <br>
+        <textarea class="card-text w-100 h-50" rows="3">{{ employee.skills }}</textarea>
+        <form method="post">
+          <a href="{% url 'edit' employee.id %}" class="btn btn-danger w-25">Edit</a>
+          <button type="button" class="btn btn-primary w-25" data-toggle="modal" data-target="#exampleModalCenter{{ employee.id }}">Delete</button>
+          <div class="modal fade" id="exampleModalCenter{{ employee.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Profile</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete {{ employee.firstname }} {{ employee.surname }} {{ employee.lastname }} from {{ employee.company_name }}?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{% url 'delete_employee' employee.id %}" type="submit" class="btn btn-primary">Delete</a>
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
+</div>
 </ul>
 {% else %}
 <p>No results found.</p>
 {% endif %}
-
-
-
 
 
 <div class="pagination">
