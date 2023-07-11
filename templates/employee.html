@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Employee</title>{% endblock %}
+
+{% block style %}
+<style>
+.form-select {
+  cursor: pointer;
+}
+.custom-file-input {
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-file-input input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.custom-file-input .custom-file-label {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #e9ecef;
+}
+
+.custom-file-input .custom-file-label::after {
+  content: "Browse";
+}
+
+
+</style>
+{% endblock %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Insert employee data</h2>
+        <div class="container-md">
+            <div class="form-row">
+                <div class="col">
+                    {{ form.firstname }}
+                </div>
+                <div class="col">
+                    {{ form.surname }}
+                </div>
+                <div class="col">
+                    {{ form.lastname }}
+                </div>
+            </div>
+            <br><div class="form-row">
+                    <div class="col">
+                        {{ form.phone }}
+                    </div>
+                    <div class="col">
+                        {{ form.address }}
+                    </div>
+            </div>
+            <br><div class="form-row">
+                <div class="col">
+                    {{ form.job_position }}
+                </div>
+                <div class="col">
+                    {{ form.company_name }}
+                </div>
+            </div>
+            <br><div class="form-row">
+                    <div class="col">
+                        {{ form.skills }}
+                    </div>
+            </div>
+            <br><div class="form-row">
+                <div class="col">
+                    {{ form.image }}
+                </div>
+            </div>
+            <br><button type="submit" class="btn btn-primary w-25">Insert</button>
+        </div>
+    </div>
+    </div>
+</form>
+{% endblock %}

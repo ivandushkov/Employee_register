@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.container-background {
+    border-radius: 30%;
+    background-color: #faf3f2;
+    width: 220px;
+    height: 200px;
+    margin-bottom: 25px;
+}
+.container-background label{
+    position: relative;
+    top: -15%;
+    left: 30%;
+    font-family: Copperplate, Papyrus, fantasy;
+    font-size: 18px;
+    font-color: black;
+    font-weight: bold;
+
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 25px;
+}
+
+.image-container img {
+  object-fit: cover;
+  position: relative;
+  top: 0%;
+  left: 25%;
+  border-radius: 50%;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  width: 140px;
+  height: 140px;
+}
+
+.status-circle {
+  position: relative;
+  bottom: 35px;
+  left: 100%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: #18a126;
+}

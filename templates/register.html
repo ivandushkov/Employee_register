@@ -1,0 +1,45 @@
+{% extends 'account.html' %}
+
+{% block title%}<title>Register</title>{% endblock %}
+
+{% block style %}
+<style>
+label, input[type="checkbox"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<form class="mx-1 mx-md-4" method="post" action="#">
+    {% csrf_token %}
+    {% if messages %}
+        <ul style="color: red; list-style: none;" class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if form.errors %}
+        <div class="error-message">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {{ form.username }}
+    <br>{{ form.email }}
+    <br>{{ form.password1 }}
+    <br>{{ form.password2 }}
+    <br><label for="checkbox">{{ form.terms }} I do accept the <a href="#">Terms</a> and Conditions of your site.  </label>
+    <br><button type="submit" class="btn btn-primary btn-lg w-100">Register</button>
+    <label>Have already an account? <a href="{% url 'login' %}">Login here</a></label>
+</form>
+
+{% endblock %}

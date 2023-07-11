@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Profile</title>{% endblock %}
+
+{% block style %}
+<style>
+body {
+    overflow: hidden;
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <img style="object-fit: cover; height: 250px;" class="card-img-top w-100" src="{{ request.user.avatar.url }}" alt="Card image cap">
+                <div  class="card-body">
+                    <h3 style="text-align: center;">Username: {{ request.user.username }}</h3>
+                    <h4 style="text-align: center;">{{ form.firstname.value }} {{ form.surname.value }} {{ form.lastname.value }}</h4>
+                    <br><div class="form-row">
+                        <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+                    </div>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Profile</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% if form.firstname.value == None or form.surname.value == None or form.lastname.value == None %}
+                                    <label style="display: inline-block;text-a">Are you sure you want to delete</label>
+                                    <p style="font-weight: bold; display: inline-block;">{{ request.user.username }}</p>
+                                    <label style="display: inline-block;"> ?</label>
+                                    {% else %}
+                                        <label style="display: inline-block;text-a">Are you sure you want to delete</label>
+                                        <p style="font-weight: bold; display: inline-block;">{{ form.firstname.value }} {{ form.surname.value }} {{ form.lastname.value }}</p>
+                                        <label style="display: inline-block;text-a"> with username: </label>
+                                        <p style="font-weight: bold; display: inline-block;">{{ request.user.username }}</p>
+                                        <label style="display: inline-block;"> ?</label>
+                                    {% endif %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="Submit" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary w-25" type="submit">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+{% endblock %}

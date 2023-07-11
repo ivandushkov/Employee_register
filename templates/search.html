@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}<title>Search</title>{% endblock %}
+
+{% block style %}
+<style>
+  .card-img-top {
+    object-fit: cover;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<form method="GET" action="{% url 'search' %}">
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <input style="width: 80%;" class="form-control" type="search" name="q" placeholder="Search objects" value="{{ request.GET.q }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+      <br>
+      <label>Total number of employees: {{ total_count }}</label>
+      {% if queryset_count %}
+        <br><label>Total number of employees with searching criteria is: {{ queryset_count }} </label>
+      {% endif %}
+    </div>
+  </div>
+</form>
+
+<form method="GET" action="{% url 'search' %}">
+  <label for="job_position">Filter by Job Position:</label>
+  <div style="width: 300px;" class="input-group mb-2">
+    <select class="form-select form-select-sm" name="job_position" id="job_position">
+      <option value="SA">System Administrator</option>
+      <option value="WD">Web Developer</option>
+      <option value="DO">DevOps</option>
+      <option value="BE">Backend developer</option>
+      <option value="CS">Cyber Security</option>
+      <option value="NA">Network Administrator</option>
+    </select>
+    <button class="btn btn-info" type="submit">Apply Filter</button>
+  </div>
+</form>
+
+
+{% if request.GET.q or request.GET.job_position or employees != None %}
+
+<h4>Search results:</h4>
+<ul>
+  <div class="row">
+    {% for employee in employees %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img style="object-fit: cover; height: 250px;" class="card-img-top w-100" src="{{ employee.image.url }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 style="text-align: center;" class="card-title">{{ employee.firstname }} {{ employee.surname }} {{ employee.lastname }}</h5>
+          <h6>Company name: {{ employee.company_name }}</h6>
+          <h6>Address: {{ employee.address }}</h6>
+          <h7>Phone: {{ employee.phone }}</h7>
+          <br>
+          <textarea class="card-text w-100 h-50" rows="3">{{ employee.skills }}</textarea>
+          <form method="post">
+            <a href="{% url 'edit' employee.id %}" class="btn btn-danger w-25">Edit</a>
+            <button type="button" class="btn btn-primary w-25" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete {{ employee.firstname }} {{ employee.surname }} {{ employee.lastname }} from {{ employee.company_name }}?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="{% url 'delete_employee' employee.id %}" type="submit" class="btn btn-primary">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</ul>
+{% else %}
+<p>No results found.</p>
+{% endif %}
+
+
+
+
+
+<div class="pagination">
+  {% if page_obj.has_previous %}
+  <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+  <span class="page-link">{{ page_obj.number }}</span>
+  {% if page_obj.has_next %}
+  <a class="page-link" name="next_page" value="?page={{ page_obj.next_page_number }}" href="?page={{ page_obj.next_page_number }}">Next</a>
+  {% endif %}
+</div>
+{% endblock %}

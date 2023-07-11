@@ -1,0 +1,36 @@
+{% extends 'account.html' %}
+
+{% block title%}<title>Login</title>{% endblock %}
+
+{% block style %}
+<style>
+label, input[type="checkbox"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    <ul style="text-align: center;list-style: none;" class="messages">
+        {% for message in messages %}
+            <li style="color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form class="mx-1 mx-md-4" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <input class="form-control" type="text" name="username" placeholder="Username">
+    <br><input class="form-control" type="password" name="password" placeholder="Password">
+    <br><label for="checkbox"> Remember me: <input type="checkbox" name="remember_me"> </label>
+    <br><button type="submit" class="btn btn-primary btn-lg w-100">Log in</button>
+    <label>You don`t have an account? <a href="{% url 'register' %}">Register here</a></label>
+    <br><a href="{% url 'reset_password' %}">Forgot password ?</a>
+</form>
+
+{% endblock %}

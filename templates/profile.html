@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Profile</title>{% endblock %}
+
+{% block style %}
+<style>
+body {
+    overflow: visible;
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <div class="container">
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <img style="object-fit: cover; height: 250px;" class="card-img-top w-100" src="{{ request.user.avatar.url }}" alt="Card image cap">
+                <div  class="card-body">
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ field }}: {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="form-row">
+                            Firstname:
+                            <br>{{ form.firstname }}
+                            Surname:
+                            <br>{{ form.surname }}
+                            Lastname:
+                            {{ form.lastname }}
+                        </div>
+                    <br><div class="form-now">
+                            {{ form.email }}
+                    </div>
+                    <br><div class="form-row">
+                        <div class="col">
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="col">
+                            {{ form.avatar }}
+                        </div>
+                    </div>
+                    <br><div class="form-row">
+                        <div class="col">
+                            <button class="btn btn-primary w-100" type="submit">Update</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

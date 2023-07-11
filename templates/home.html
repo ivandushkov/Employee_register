@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+
+{% block title %}<title>Home</title>{% endblock %}
+
+{% block style %}
+<style>
+    body {
+    overflow: hidden;
+    }
+.container {
+  position: relative;
+  width: 70%;
+  max-width: 1200px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 25px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7); /* Black see-through */
+  color: #f1f1f1;
+  width: 97%;
+  height: 95%;
+  transition: .9s ease;
+  opacity: 0;
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  padding-top: 200px;
+  text-align: center;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+h2 {
+  font-weight: bold;
+  color: #00bcd4;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+</style>
+{% endblock %}
+{% block content %}
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    <h2 style="text-align: center; margin-top: 25px; margin-bottom: 25px;" class="display-4">Register your company now !</h2>
+    <div class="form-row">
+        <div class="col">
+            {{ form }}
+        </div>
+        <div class="col">
+            <select class="form-select" name="company">
+            <option value="" selected disabled>Your companies list</option> <!-- Placeholder or default value -->
+            {% if companies %}
+                {% for company in companies %}
+                    <option value="{{ company.id }}">{{ company.company_name }}</option>
+                {% endfor %}
+            {% endif %}
+            </select>
+        </div>
+    </div>
+    <div style="margin-top: 25px;" class="d-flex justify-content-center">
+        <br><button type="submit" class="btn btn-primary w-25">Register</button>
+    </div>
+</form>
+
+<div class="container">
+  <img src="https://oneminuteenglish.org/wp-content/uploads/2021/09/Get-the-Gist-72.png" alt="Avatar" class="image">
+  <div class="overlay">Build your dreams</div>
+</div>
+
+{% endblock %}
