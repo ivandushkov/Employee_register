@@ -69,7 +69,7 @@ class UpdateAccount(UpdateView):
         return self.request.user
 
     def form_valid(self, form):
-        messages.success(self.request, 'Profile is updated')
+        messages.success(self.request, 'Account is updated')
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -84,11 +84,18 @@ class ChangePasswordAccount(PasswordChangeView):
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
-class DeleteAccount(DeleteView):
+class DeleteAccount(DeleteView, UpdateView):
     model = User
     template_name = 'delete_profile.html'
     form_class = UserForm
     success_url = reverse_lazy('home')
+    context_object_name = 'form'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
 
     def get_object(self, queryset=None):
         return self.request.user
@@ -100,6 +107,7 @@ class DeleteAccount(DeleteView):
             messages.success(request, "Account is deleted")
             return redirect(self.success_url)
         return redirect(self.success_url)
+
 
 
 class PasswordResetView_main(PasswordResetView):
